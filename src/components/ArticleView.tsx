@@ -16,7 +16,7 @@ export const ArticleView: React.FC<ArticleViewProps> = ({ article, onBack }) => 
         className="flex items-center text-blue-600 mb-8 hover:text-blue-700 transition-colors"
       >
         <ArrowLeft className="h-5 w-5 mr-2" />
-        Back to Articles
+        Back to Blogs
       </button>
 
       <img

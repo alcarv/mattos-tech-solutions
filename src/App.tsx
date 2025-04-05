@@ -1,5 +1,5 @@
 import React, { useState, FormEvent } from 'react';
-import { Code2, Globe, Laptop, MessageSquare, MonitorSmartphone, Rocket, Star, Check, Sparkles } from 'lucide-react';
+import { Code2, Globe, Laptop, MessageSquare, MonitorSmartphone, Rocket, Star, Check, Sparkles, X, Menu } from 'lucide-react';
 import { WhatsAppIcon } from './components/WhatsAppIcon';
 import { ArticleCard, Article } from './components/ArticleCard';
 import { ArticleView } from './components/ArticleView';
@@ -7,6 +7,7 @@ import { Pagination } from './components/Pagination';
 import { articles } from './data/articles';
 import { CodeAnimation } from './components/CodeAnimation';
 import { ThemeToggle } from './components/ThemeToggle';
+import PromoBanner from './components/PromoBanner';
 import emailjs from '@emailjs/browser';
 import toast, { Toaster } from 'react-hot-toast';
 
@@ -21,9 +22,10 @@ function App() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const articlesPerPage = 3;
-  
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   const handleWhatsAppClick = () => {
-    window.open('https://wa.me/+5500000000000', '_blank');
+    window.open('https://wa.me/+5511982712741', '_blank');
   };
 
   const handleArticleClick = (id: string) => {
@@ -57,15 +59,15 @@ function App() {
 
     try {
       const result = await emailjs.send(
-        'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
-        'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
+        'service_gw5de7u', // Replace with your EmailJS service ID
+        'template_6thkp3e', // Replace with your EmailJS template ID
         {
-          from_name: formData.name,
-          from_email: formData.email,
-          from_phone: formData.phone,
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
           message: formData.message,
         },
-        'YOUR_PUBLIC_KEY' // Replace with your EmailJS public key
+        'EsEG4RZMAvxv8WTse' // Replace with your EmailJS public key
       );
 
       if (result.status === 200) {
@@ -98,7 +100,7 @@ function App() {
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 relative">
       <Toaster position="top-right" />
-      
+
       {/* Floating WhatsApp Button */}
       <button
         onClick={handleWhatsAppClick}
@@ -108,33 +110,59 @@ function App() {
         <WhatsAppIcon />
       </button>
 
-      {/* Promotional Banner */}
+      {/* Promotional Banner 
       <div className="bg-yellow-400 text-black py-3 px-4">
         <div className="container mx-auto text-center">
           <p className="font-bold text-lg">🚀 Special Offer: Website Development starting at R$400! 🚀</p>
         </div>
       </div>
-
+      */}
       {/* Hero Section */}
-      <header className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
-        <nav className="container mx-auto px-6 py-4">
+      <nav className="fixed top-0 left-0 w-full bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-md z-50">
+        <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <Code2 className="h-8 w-8" />
               <span className="text-xl font-bold">Mattos Tech & Solutions</span>
             </div>
+
+            {/* Navegação desktop */}
             <div className="hidden md:flex items-center space-x-8">
               <a href="#services" className="hover:text-blue-200 dark:text-gray-300 dark:hover:text-white">Services</a>
               <a href="#pricing" className="hover:text-blue-200 dark:text-gray-300 dark:hover:text-white">Pricing</a>
               <a href="#about" className="hover:text-blue-200 dark:text-gray-300 dark:hover:text-white">About</a>
-              <a href="#articles" className="hover:text-blue-200 dark:text-gray-300 dark:hover:text-white">Articles</a>
+              <a href="#articles" className="hover:text-blue-200 dark:text-gray-300 dark:hover:text-white">Blogs</a>
               <a href="#testimonials" className="hover:text-blue-200 dark:text-gray-300 dark:hover:text-white">Testimonials</a>
               <a href="#contact" className="hover:text-blue-200 dark:text-gray-300 dark:hover:text-white">Contact</a>
               <ThemeToggle />
             </div>
+
+            {/* Menu mobile toggle */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="md:hidden focus:outline-none"
+              aria-label="Abrir menu"
+            >
+              {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
           </div>
-        </nav>
-        
+
+          {/* Menu mobile */}
+          {isMobileMenuOpen && (
+            <div className="md:hidden mt-4 space-y-4">
+              <a href="#services" className="block text-white hover:text-blue-200">Services</a>
+              <a href="#pricing" className="block text-white hover:text-blue-200">Pricing</a>
+              <a href="#about" className="block text-white hover:text-blue-200">About</a>
+              <a href="#articles" className="block text-white hover:text-blue-200">Articles</a>
+              <a href="#testimonials" className="block text-white hover:text-blue-200">Testimonials</a>
+              <a href="#contact" className="block text-white hover:text-blue-200">Contact</a>
+              <ThemeToggle />
+            </div>
+          )}
+        </div>
+      </nav>
+
+      <header className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white pt-24"> {/* padding-top compensando a altura do nav fixo */}
         <div className="container mx-auto px-6 py-20 md:py-32">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
@@ -145,13 +173,13 @@ function App() {
                 Custom web development and technology solutions tailored to your business needs
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <a 
+                <a
                   href="#contact"
                   className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition duration-300 text-center"
                 >
                   Get Started
                 </a>
-                <button 
+                <button
                   onClick={handleWhatsAppClick}
                   className="bg-green-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-600 transition duration-300 flex items-center justify-center gap-2"
                 >
@@ -163,6 +191,7 @@ function App() {
             <div className="hidden md:block">
               <CodeAnimation />
             </div>
+            <PromoBanner />
           </div>
         </div>
       </header>
@@ -172,19 +201,19 @@ function App() {
         <div className="container mx-auto px-6">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 dark:text-white">Our Services</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <ServiceCard 
+            <ServiceCard
               icon={<Globe className="h-8 w-8" />}
               title="Web Development"
               description="Custom websites built with modern technologies and best practices. Starting at R$400"
               price="From R$400"
             />
-            <ServiceCard 
+            <ServiceCard
               icon={<MonitorSmartphone className="h-8 w-8" />}
               title="Responsive Design"
               description="Mobile-first websites that work perfectly on all devices"
               price="Included"
             />
-            <ServiceCard 
+            <ServiceCard
               icon={<Rocket className="h-8 w-8" />}
               title="Performance Optimization"
               description="Fast-loading websites optimized for search engines"
@@ -284,8 +313,8 @@ function App() {
         <div className="container mx-auto px-6">
           <div className="flex flex-col md:flex-row items-center gap-12">
             <div className="md:w-1/2">
-              <img 
-                src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=800&q=80" 
+              <img
+                src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=800&q=80"
                 alt="Team working"
                 className="rounded-lg shadow-lg"
               />
@@ -317,12 +346,12 @@ function App() {
       {/* Articles Section */}
       <section id="articles" className="py-20 dark:bg-gray-900">
         <div className="container mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 dark:text-white">Latest Articles</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 dark:text-white">Latest Blogs</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {currentArticles.map(article => (
-              <ArticleCard 
-                key={article.id} 
-                article={article} 
+              <ArticleCard
+                key={article.id}
+                article={article}
                 onClick={handleArticleClick}
               />
             ))}
