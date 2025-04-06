@@ -10,7 +10,7 @@ function PromoBanner() {
   return (
     <div className="w-full bg-yellow-400 text-black py-3 px-6 flex justify-between items-center z-10">
       <span className="font-bold text-lg">
-        🚀 Special Offer: Website Development starting at R$400! 🚀
+        🚀 Oferta especial: Desenvolvimento de site a partir de R$500,00! 🚀
       </span>
       <button 
         onClick={() => setIsVisible(false)} 

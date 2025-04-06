@@ -1,5 +1,5 @@
 import React, { useState, FormEvent } from 'react';
-import { Code2, Globe, Laptop, MessageSquare, MonitorSmartphone, Rocket, Star, Check, Sparkles, X, Menu } from 'lucide-react';
+import { Code2, Globe, Laptop, MessageSquare, MonitorSmartphone, Rocket, Star, Check, Sparkles, X, Menu, Phone } from 'lucide-react';
 import { WhatsAppIcon } from './components/WhatsAppIcon';
 import { ArticleCard, Article } from './components/ArticleCard';
 import { ArticleView } from './components/ArticleView';
@@ -26,6 +26,10 @@ function App() {
 
   const handleWhatsAppClick = () => {
     window.open('https://wa.me/+5511982712741', '_blank');
+  };
+
+  const handleCallClick = () => {
+    window.location.href = 'tel:+5511982712741';
   };
 
   const handleArticleClick = (id: string) => {
@@ -59,15 +63,15 @@ function App() {
 
     try {
       const result = await emailjs.send(
-        'service_gw5de7u', // Replace with your EmailJS service ID
-        'template_6thkp3e', // Replace with your EmailJS template ID
+        'service_gw5de7u',
+        'template_6thkp3e',
         {
           name: formData.name,
           email: formData.email,
           phone: formData.phone,
           message: formData.message,
         },
-        'EsEG4RZMAvxv8WTse' // Replace with your EmailJS public key
+        'EsEG4RZMAvxv8WTse'
       );
 
       if (result.status === 200) {
@@ -110,13 +114,6 @@ function App() {
         <WhatsAppIcon />
       </button>
 
-      {/* Promotional Banner 
-      <div className="bg-yellow-400 text-black py-3 px-4">
-        <div className="container mx-auto text-center">
-          <p className="font-bold text-lg">🚀 Special Offer: Website Development starting at R$400! 🚀</p>
-        </div>
-      </div>
-      */}
       {/* Hero Section */}
       <nav className="fixed top-0 left-0 w-full bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-md z-50">
         <div className="container mx-auto px-6 py-4">
@@ -128,12 +125,12 @@ function App() {
 
             {/* Navegação desktop */}
             <div className="hidden md:flex items-center space-x-8">
-              <a href="#services" className="hover:text-blue-200 dark:text-gray-300 dark:hover:text-white">Services</a>
-              <a href="#pricing" className="hover:text-blue-200 dark:text-gray-300 dark:hover:text-white">Pricing</a>
-              <a href="#about" className="hover:text-blue-200 dark:text-gray-300 dark:hover:text-white">About</a>
+              <a href="#services" className="hover:text-blue-200 dark:text-gray-300 dark:hover:text-white">Serviços</a>
+              <a href="#pricing" className="hover:text-blue-200 dark:text-gray-300 dark:hover:text-white">Preços</a>
+              <a href="#about" className="hover:text-blue-200 dark:text-gray-300 dark:hover:text-white">Sobre</a>
               <a href="#articles" className="hover:text-blue-200 dark:text-gray-300 dark:hover:text-white">Blogs</a>
-              <a href="#testimonials" className="hover:text-blue-200 dark:text-gray-300 dark:hover:text-white">Testimonials</a>
-              <a href="#contact" className="hover:text-blue-200 dark:text-gray-300 dark:hover:text-white">Contact</a>
+              <a href="#testimonials" className="hover:text-blue-200 dark:text-gray-300 dark:hover:text-white">Avaliações</a>
+              <a href="#contact" className="hover:text-blue-200 dark:text-gray-300 dark:hover:text-white">Contatos</a>
               <ThemeToggle />
             </div>
 
@@ -162,29 +159,29 @@ function App() {
         </div>
       </nav>
 
-      <header className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white pt-24"> {/* padding-top compensando a altura do nav fixo */}
+      <header className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white pt-24">
         <div className="container mx-auto px-6 py-20 md:py-32">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                Transform Your Digital Presence
+                Seu site profissional começa aqui
               </h1>
               <p className="text-xl md:text-2xl mb-8 text-blue-100">
-                Custom web development and technology solutions tailored to your business needs
+                Soluções digitais personalizadas para quem quer crescer de verdade
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
                   href="#contact"
                   className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition duration-300 text-center"
                 >
-                  Get Started
+                  Comece Agora
                 </a>
                 <button
                   onClick={handleWhatsAppClick}
                   className="bg-green-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-600 transition duration-300 flex items-center justify-center gap-2"
                 >
                   <WhatsAppIcon className="h-5 w-5" />
-                  <span>Get a Quote</span>
+                  <span>Faça uma Cotação</span>
                 </button>
               </div>
             </div>
@@ -199,51 +196,50 @@ function App() {
       {/* Services Section */}
       <section id="services" className="py-20 bg-gray-50 dark:bg-gray-800">
         <div className="container mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 dark:text-white">Our Services</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 dark:text-white">Nossos Serviços</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <ServiceCard
               icon={<Globe className="h-8 w-8" />}
               title="Web Development"
-              description="Custom websites built with modern technologies and best practices. Starting at R$400"
-              price="From R$400"
+              description="Sites e sistemas personalizados construídos com tecnologias modernas e melhores práticas. Começando em R$500,00"
+              price="Apartir de R$500,00"
             />
             <ServiceCard
               icon={<MonitorSmartphone className="h-8 w-8" />}
-              title="Responsive Design"
-              description="Mobile-first websites that work perfectly on all devices"
-              price="Included"
+              title="Design Responsivo"
+              description="Sites/Sistemas mobile-first que funcionam perfeitamente em todos os dispositivos"
+              price="Incluido"
             />
             <ServiceCard
               icon={<Rocket className="h-8 w-8" />}
-              title="Performance Optimization"
-              description="Fast-loading websites optimized for search engines"
-              price="Included"
+              title="Otimização de Performance"
+              description="Sites de carregamento rápido otimizados para mecanismos de busca"
+              price="Incluido"
             />
           </div>
         </div>
       </section>
 
-      {/* Pricing Section */}
       <section id="pricing" className="py-20 dark:bg-gray-900">
         <div className="container mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 dark:text-white">Simple Pricing</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 dark:text-white">Preços</h2>
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {/* Static Website Package */}
+            {/* Pacote de Site Estático */}
             <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden">
               <div className="p-8 bg-blue-600 text-white">
-                <h3 className="text-2xl font-bold mb-2">Static Website Package</h3>
-                <p className="text-4xl font-bold mb-4">R$400</p>
-                <p className="text-blue-100">Perfect for small businesses and personal websites</p>
+                <h3 className="text-2xl font-bold mb-2">Pacote de Site Estático</h3>
+                <p className="text-4xl font-bold mb-4">R$500,00</p>
+                <p className="text-blue-100">Perfeito para pequenas empresas e sites pessoais</p>
               </div>
               <div className="p-8">
                 <ul className="space-y-4">
                   {[
-                    'Professional website design',
-                    'Mobile responsive layout',
-                    'Up to 5 pages',
-                    'Contact form',
-                    'SEO optimization',
-                    'Fast loading performance',
+                    'Design profissional de site',
+                    'Layout responsivo para dispositivos móveis',
+                    'Até 5 páginas',
+                    'Formulário de contato',
+                    'Otimização SEO',
+                    'Carregamento rápido',
                   ].map((feature, index) => (
                     <li key={index} className="flex items-center gap-3 dark:text-gray-300">
                       <Check className="h-5 w-5 text-green-500" />
@@ -256,33 +252,33 @@ function App() {
                     onClick={handleWhatsAppClick}
                     className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 w-full"
                   >
-                    Get Started
+                    Comece Agora
                   </button>
                 </div>
               </div>
             </div>
 
-            {/* Custom Solutions Package */}
+            {/* Pacote de Soluções Personalizadas */}
             <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden border-2 border-indigo-500">
               <div className="p-8 bg-gradient-to-r from-indigo-600 to-purple-600 text-white relative">
                 <div className="absolute top-4 right-4">
                   <Sparkles className="h-6 w-6" />
                 </div>
-                <h3 className="text-2xl font-bold mb-2">Custom Solutions</h3>
-                <p className="text-4xl font-bold mb-4">Custom Quote</p>
-                <p className="text-indigo-100">Tailored solutions for your unique needs</p>
+                <h3 className="text-2xl font-bold mb-2">Soluções Personalizadas</h3>
+                <p className="text-4xl font-bold mb-4">Cotação Personalizada</p>
+                <p className="text-indigo-100">Soluções feitas sob medida para suas necessidades únicas</p>
               </div>
               <div className="p-8">
                 <ul className="space-y-4">
                   {[
-                    'Everything in Static Package',
-                    'Custom functionality',
-                    'Database integration',
-                    'User authentication',
-                    'Admin dashboard',
-                    'API integration',
-                    'Unlimited pages',
-                    'Premium support',
+                    'Tudo do Pacote de Site Estático',
+                    'Funcionalidades personalizadas',
+                    'Integração de banco de dados',
+                    'Autenticação de usuário',
+                    'Painel administrativo',
+                    'Integração de API',
+                    'Páginas ilimitadas',
+                    'Suporte premium',
                   ].map((feature, index) => (
                     <li key={index} className="flex items-center gap-3 dark:text-gray-300">
                       <Check className="h-5 w-5 text-indigo-500" />
@@ -296,10 +292,10 @@ function App() {
                     className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-indigo-700 hover:to-purple-700 transition duration-300 w-full flex items-center justify-center gap-2"
                   >
                     <WhatsAppIcon className="h-5 w-5" />
-                    Get a Quote
+                    Faça uma Cotação
                   </button>
                   <p className="mt-4 text-gray-600 dark:text-gray-400 text-sm">
-                    Contact us for a personalized solution that fits your needs and budget
+                    Entre em contato para uma solução personalizada que atenda às suas necessidades e ao seu orçamento
                   </p>
                 </div>
               </div>
@@ -307,6 +303,7 @@ function App() {
           </div>
         </div>
       </section>
+
 
       {/* About Section */}
       <section id="about" className="py-20 bg-gray-50 dark:bg-gray-800">
@@ -320,22 +317,28 @@ function App() {
               />
             </div>
             <div className="md:w-1/2">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 dark:text-white">About Us</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 dark:text-white">Sobre Nós</h2>
               <p className="text-gray-600 dark:text-gray-300 mb-6">
-                We're passionate about creating exceptional digital experiences that help businesses thrive in the modern world. With years of experience in web development and technology solutions, we bring expertise and innovation to every project.
+                Somos apaixonados por criar experiências digitais excepcionais que impulsionam o sucesso dos nossos clientes no mundo moderno.
+                Desde 2017, atuamos no setor de tecnologia desenvolvendo soluções sob medida — desde websites institucionais até sistemas de alta performance para grandes instituições financeiras.
+
+                Combinamos experiência, inovação e foco em resultados para entregar projetos que realmente fazem a diferença.
+                Além do desenvolvimento de software e toda experiência técnica, oferecemos consultoria estratégica para acelerar o crescimento tecnológico e financeiro das empresas.
+
+                Se você busca uma parceria confiável para transformar digitalmente seu negócio, estamos prontos para fazer isso acontecer.
               </p>
               <ul className="space-y-4">
                 <li className="flex items-center space-x-3 dark:text-gray-300">
                   <Laptop className="h-5 w-5 text-blue-600" />
-                  <span>Expert development team</span>
+                  <span>Time de Desenvolvimento Expert</span>
                 </li>
                 <li className="flex items-center space-x-3 dark:text-gray-300">
                   <Rocket className="h-5 w-5 text-blue-600" />
-                  <span>Cutting-edge technologies</span>
+                  <span>Tecnologia Ideal para sua Necessidade</span>
                 </li>
                 <li className="flex items-center space-x-3 dark:text-gray-300">
                   <MessageSquare className="h-5 w-5 text-blue-600" />
-                  <span>Dedicated support</span>
+                  <span>Suporte Dedicado</span>
                 </li>
               </ul>
             </div>
@@ -346,7 +349,7 @@ function App() {
       {/* Articles Section */}
       <section id="articles" className="py-20 dark:bg-gray-900">
         <div className="container mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 dark:text-white">Latest Blogs</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 dark:text-white">Últimos Blogs</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {currentArticles.map(article => (
               <ArticleCard
@@ -366,28 +369,28 @@ function App() {
         </div>
       </section>
 
-      {/* Testimonials Section */}
+      {/* Seção de Depoimentos */}
       <section id="testimonials" className="py-20 bg-gray-50 dark:bg-gray-800">
         <div className="container mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 dark:text-white">What Our Clients Say</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 dark:text-white">O que nossos clientes dizem</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <TestimonialCard
               name="Maria Silva"
-              role="Restaurant Owner"
+              role="Proprietária de Restaurante"
               image="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&h=150&q=80"
-              content="The website they created for my restaurant perfectly captures our atmosphere and has significantly increased our online reservations."
+              content="O site que criaram para o meu restaurante capta perfeitamente nossa atmosfera e aumentou significativamente nossas reservas online."
             />
             <TestimonialCard
               name="João Santos"
-              role="Fitness Trainer"
+              role="Instrutor de Fitness"
               image="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=150&h=150&q=80"
-              content="Professional service from start to finish. My fitness coaching website looks amazing and works flawlessly on all devices."
+              content="Serviço profissional do começo ao fim. Meu site de treinamento fitness ficou incrível e funciona perfeitamente em todos os dispositivos."
             />
             <TestimonialCard
               name="Ana Costa"
-              role="Boutique Owner"
+              role="Proprietária de Boutique"
               image="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&h=150&q=80"
-              content="They transformed my online presence completely. The website is beautiful and has helped increase my sales significantly."
+              content="Eles transformaram completamente minha presença online. O site é lindo e ajudou a aumentar significativamente minhas vendas."
             />
           </div>
         </div>
@@ -396,23 +399,30 @@ function App() {
       {/* Contact Section */}
       <section id="contact" className="py-20 dark:bg-gray-900">
         <div className="container mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 dark:text-white">Get In Touch</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 dark:text-white">Entre em Contato</h2>
           <div className="max-w-2xl mx-auto">
             <div className="text-center mb-8">
-              <p className="text-xl mb-4 dark:text-gray-300">Contact us directly:</p>
-              <div className="flex justify-center gap-4">
+              <p className="text-xl mb-4 dark:text-gray-300">Contato Diretamente:</p>
+              <div className="flex justify-center gap-6">
                 <button
                   onClick={handleWhatsAppClick}
-                  className="flex items-center gap-2 text-[#25D366] hover:text-[#128C7E]"
+                  className="flex items-center gap-2 text-[#25D366] hover:text-[#128C7E] transition-colors"
                 >
                   <WhatsAppIcon className="h-5 w-5" />
-                  <span>Get a Quote on WhatsApp</span>
+                  <span>WhatsApp</span>
+                </button>
+                <button
+                  onClick={handleCallClick}
+                  className="flex items-center gap-2 text-blue-600 hover:text-blue-700 transition-colors"
+                >
+                  <Phone className="h-5 w-5" />
+                  <span>Ligação</span>
                 </button>
               </div>
             </div>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Name</label>
+                <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Nome</label>
                 <input
                   type="text"
                   id="name"
@@ -421,7 +431,7 @@ function App() {
                   onChange={handleInputChange}
                   required
                   className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
-                  placeholder="Your name"
+                  placeholder="Seu Nome"
                 />
               </div>
               <div>
@@ -434,11 +444,11 @@ function App() {
                   onChange={handleInputChange}
                   required
                   className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
-                  placeholder="your@email.com"
+                  placeholder="seu@email.com"
                 />
               </div>
               <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Phone Number</label>
+                <label htmlFor="phone" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Número de Telefone</label>
                 <input
                   type="tel"
                   id="phone"
@@ -447,11 +457,11 @@ function App() {
                   onChange={handleInputChange}
                   required
                   className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
-                  placeholder="Your phone number"
+                  placeholder="Seu Número de Celular"
                 />
               </div>
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Message</label>
+                <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Mensagem</label>
                 <textarea
                   id="message"
                   name="message"
@@ -460,7 +470,7 @@ function App() {
                   required
                   rows={4}
                   className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
-                  placeholder="Tell us about your project"
+                  placeholder="Descreva Sobre seu Projeto"
                 ></textarea>
               </div>
               <button
@@ -468,7 +478,7 @@ function App() {
                 disabled={isSubmitting}
                 className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {isSubmitting ? 'Sending...' : 'Send Message'}
+                {isSubmitting ? 'Enviando...' : 'Enviar Contato'}
               </button>
             </form>
           </div>
@@ -485,9 +495,13 @@ function App() {
             </div>
             <div className="text-center md:text-right">
               <p>© 2024 Mattos Tech & Solutions. All rights reserved.</p>
+              <span className="text-sm">CNPJ: 54.019.901/0001-54</span>
               <div className="flex items-center justify-center md:justify-end gap-4 mt-2">
                 <button onClick={handleWhatsAppClick} className="hover:text-[#25D366]">
                   <WhatsAppIcon className="h-5 w-5" />
+                </button>
+                <button onClick={handleCallClick} className="hover:text-blue-400">
+                  <Phone className="h-5 w-5" />
                 </button>
               </div>
             </div>
