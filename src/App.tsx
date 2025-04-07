@@ -94,7 +94,7 @@ function App() {
   if (selectedArticle) {
     return <ArticleView article={selectedArticle} onBack={handleBackToArticles} />;
   }
-
+ 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 relative">
       <Toaster position="top-right" />
