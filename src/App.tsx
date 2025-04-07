@@ -8,6 +8,7 @@ import { articles } from './data/articles';
 import { CodeAnimation } from './components/CodeAnimation';
 import { ThemeToggle } from './components/ThemeToggle';
 import PromoBanner from './components/PromoBanner';
+import { useGoogleAnalytics } from './hooks/useGoogleAnalytics';
 import emailjs from '@emailjs/browser';
 import toast, { Toaster } from 'react-hot-toast';
 import { BlogPostsList } from './components/BlogPostsList';
@@ -23,28 +24,34 @@ function App() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { trackEvent } = useGoogleAnalytics();
 
   const handleWhatsAppClick = () => {
+    trackEvent('whatsapp_click', 'contact', 'WhatsApp Button');
     window.open('https://wa.me/+5511982712741', '_blank');
   };
 
   const handleCallClick = () => {
+    trackEvent('phone_click', 'contact', 'Phone Button');
     window.location.href = 'tel:+5511982712741';
   };
 
   const handleArticleClick = (id: string) => {
     const article = articles.find(a => a.id === id);
     if (article) {
+      trackEvent('article_view', 'content', article.title);
       setSelectedArticle(article);
       window.scrollTo(0, 0);
     }
   };
 
   const handleBackToArticles = () => {
+    trackEvent('back_to_articles', 'navigation', 'Back to Articles');
     setSelectedArticle(null);
   };
 
   const handlePageChange = (page: number) => {
+    trackEvent('page_change', 'navigation', `Page ${page}`);
     setCurrentPage(page);
     document.getElementById('articles')?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -75,6 +82,7 @@ function App() {
       );
 
       if (result.status === 200) {
+        trackEvent('form_submission', 'contact', 'Contact Form', 1);
         toast.success('Message sent successfully!');
         setFormData({
           name: '',
@@ -84,6 +92,7 @@ function App() {
         });
       }
     } catch (error) {
+      trackEvent('form_error', 'error', 'Contact Form Error');
       toast.error('Failed to send message. Please try again.');
       console.error('Error sending email:', error);
     } finally {
@@ -94,7 +103,7 @@ function App() {
   if (selectedArticle) {
     return <ArticleView article={selectedArticle} onBack={handleBackToArticles} />;
   }
- 
+
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 relative">
       <Toaster position="top-right" />
@@ -119,18 +128,21 @@ function App() {
 
             {/* Navegação desktop */}
             <div className="hidden md:flex items-center space-x-8">
-              <a href="#services" className="hover:text-blue-200 dark:text-gray-300 dark:hover:text-white">Serviços</a>
-              <a href="#pricing" className="hover:text-blue-200 dark:text-gray-300 dark:hover:text-white">Preços</a>
-              <a href="#about" className="hover:text-blue-200 dark:text-gray-300 dark:hover:text-white">Sobre</a>
-              <a href="#articles" className="hover:text-blue-200 dark:text-gray-300 dark:hover:text-white">Blogs</a>
-              <a href="#testimonials" className="hover:text-blue-200 dark:text-gray-300 dark:hover:text-white">Avaliações</a>
-              <a href="#contact" className="hover:text-blue-200 dark:text-gray-300 dark:hover:text-white">Contatos</a>
+              <a href="#services" onClick={() => trackEvent('nav_click', 'navigation', 'Services')} className="hover:text-blue-200 dark:text-gray-300 dark:hover:text-white">Serviços</a>
+              <a href="#pricing" onClick={() => trackEvent('nav_click', 'navigation', 'Pricing')} className="hover:text-blue-200 dark:text-gray-300 dark:hover:text-white">Preços</a>
+              <a href="#about" onClick={() => trackEvent('nav_click', 'navigation', 'About')} className="hover:text-blue-200 dark:text-gray-300 dark:hover:text-white">Sobre</a>
+              <a href="#articles" onClick={() => trackEvent('nav_click', 'navigation', 'Blogs')} className="hover:text-blue-200 dark:text-gray-300 dark:hover:text-white">Blogs</a>
+              <a href="#testimonials" onClick={() => trackEvent('nav_click', 'navigation', 'Testimonials')} className="hover:text-blue-200 dark:text-gray-300 dark:hover:text-white">Avaliações</a>
+              <a href="#contact" onClick={() => trackEvent('nav_click', 'navigation', 'Contact')} className="hover:text-blue-200 dark:text-gray-300 dark:hover:text-white">Contatos</a>
               <ThemeToggle />
             </div>
 
             {/* Menu mobile toggle */}
             <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              onClick={() => {
+                trackEvent('mobile_menu', 'navigation', isMobileMenuOpen ? 'Close Menu' : 'Open Menu');
+                setIsMobileMenuOpen(!isMobileMenuOpen);
+              }}
               className="md:hidden focus:outline-none"
               aria-label="Abrir menu"
             >
@@ -141,12 +153,12 @@ function App() {
           {/* Menu mobile */}
           {isMobileMenuOpen && (
             <div className="md:hidden mt-4 space-y-4">
-              <a href="#services" className="block text-white hover:text-blue-200">Services</a>
-              <a href="#pricing" className="block text-white hover:text-blue-200">Pricing</a>
-              <a href="#about" className="block text-white hover:text-blue-200">About</a>
-              <a href="#articles" className="block text-white hover:text-blue-200">Articles</a>
-              <a href="#testimonials" className="block text-white hover:text-blue-200">Testimonials</a>
-              <a href="#contact" className="block text-white hover:text-blue-200">Contact</a>
+              <a href="#services" onClick={() => trackEvent('mobile_nav_click', 'navigation', 'Services')} className="block text-white hover:text-blue-200">Services</a>
+              <a href="#pricing" onClick={() => trackEvent('mobile_nav_click', 'navigation', 'Pricing')} className="block text-white hover:text-blue-200">Pricing</a>
+              <a href="#about" onClick={() => trackEvent('mobile_nav_click', 'navigation', 'About')} className="block text-white hover:text-blue-200">About</a>
+              <a href="#articles" onClick={() => trackEvent('mobile_nav_click', 'navigation', 'Articles')} className="block text-white hover:text-blue-200">Articles</a>
+              <a href="#testimonials" onClick={() => trackEvent('mobile_nav_click', 'navigation', 'Testimonials')} className="block text-white hover:text-blue-200">Testimonials</a>
+              <a href="#contact" onClick={() => trackEvent('mobile_nav_click', 'navigation', 'Contact')} className="block text-white hover:text-blue-200">Contact</a>
               <ThemeToggle />
             </div>
           )}
@@ -166,6 +178,7 @@ function App() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
                   href="#contact"
+                  onClick={() => trackEvent('cta_click', 'conversion', 'Start Now')}
                   className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition duration-300 text-center"
                 >
                   Comece Agora
@@ -297,7 +310,6 @@ function App() {
           </div>
         </div>
       </section>
-
 
       {/* About Section */}
       <section id="about" className="py-20 bg-gray-50 dark:bg-gray-800">
