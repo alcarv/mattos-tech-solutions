@@ -10,6 +10,7 @@ import { ThemeToggle } from './components/ThemeToggle';
 import PromoBanner from './components/PromoBanner';
 import emailjs from '@emailjs/browser';
 import toast, { Toaster } from 'react-hot-toast';
+import { BlogPostsList } from './components/BlogPostsList';
 
 function App() {
   const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
@@ -21,7 +22,6 @@ function App() {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const articlesPerPage = 3;
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleWhatsAppClick = () => {
@@ -90,12 +90,6 @@ function App() {
       setIsSubmitting(false);
     }
   };
-
-  // Calculate pagination
-  const totalPages = Math.ceil(articles.length / articlesPerPage);
-  const indexOfLastArticle = currentPage * articlesPerPage;
-  const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
-  const currentArticles = articles.slice(indexOfFirstArticle, indexOfLastArticle);
 
   if (selectedArticle) {
     return <ArticleView article={selectedArticle} onBack={handleBackToArticles} />;
@@ -350,22 +344,7 @@ function App() {
       <section id="articles" className="py-20 dark:bg-gray-900">
         <div className="container mx-auto px-6">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 dark:text-white">Últimos Blogs</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {currentArticles.map(article => (
-              <ArticleCard
-                key={article.id}
-                article={article}
-                onClick={handleArticleClick}
-              />
-            ))}
-          </div>
-          {totalPages > 1 && (
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={handlePageChange}
-            />
-          )}
+          <BlogPostsList websiteId="c2520460-21b9-4587-8759-a51658a1ad06" perPage={10} />
         </div>
       </section>
 
