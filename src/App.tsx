@@ -144,28 +144,28 @@ function App() {
           <Route path="/blog/:id" element={<BlogPostPage />} />
           <Route path="/" element={
             <>
-              {/* Hero Section */}
-              <header className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white pt-24">
-                <div className="container mx-auto px-6 py-20 md:py-32">
-                  <div className="grid md:grid-cols-2 gap-12 items-center">
-                    <div>
-                      <h1 className="text-4xl md:text-6xl font-bold mb-6">
+              {/* Header Section */}
+              <header className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white pt-24 relative">
+                <div className="container mx-auto px-6 py-16 md:py-24">
+                  <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+                    <div className="max-w-2xl">
+                      <h1 className="text-3xl md:text-5xl font-bold mb-4 leading-tight">
                         Seu site profissional começa aqui
                       </h1>
-                      <p className="text-xl md:text-2xl mb-8 text-blue-100">
+                      <p className="text-lg md:text-xl mb-6 text-blue-100 leading-relaxed">
                         Soluções digitais personalizadas para quem quer crescer de verdade
                       </p>
                       <div className="flex flex-col sm:flex-row gap-4">
                         <a
                           href="#contact"
                           onClick={() => trackEvent('cta_click', 'conversion', 'Start Now')}
-                          className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition duration-300 text-center"
+                          className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition duration-300 text-center text-base"
                         >
                           Comece Agora
                         </a>
                         <button
                           onClick={handleWhatsAppClick}
-                          className="bg-green-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-600 transition duration-300 flex items-center justify-center gap-2"
+                          className="bg-green-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-600 transition duration-300 flex items-center justify-center gap-2 text-base"
                         >
                           <WhatsAppIcon className="h-5 w-5" />
                           <span>Faça uma Cotação</span>

@@ -5,15 +5,33 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Desenvolvimento Websites | Densenvolvimento Sistemas | Mattos Tech Solutions</title>
-    <!-- Google tag (gtag.js) -->
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="/src/index.css" as="style">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Preload largest contentful paint image if you have one -->
+    <link rel="preload" as="image" href="/favicon.svg">
+    
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-7DNE8CSDP0"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-7DNE8CSDP0');
     </script>
+
+    <!-- Meta tags for SEO -->
+    <meta name="description" content="Desenvolvimento de websites e sistemas personalizados com tecnologias modernas. Soluções digitais para o crescimento do seu negócio.">
+    <meta name="keywords" content="desenvolvimento web, websites, sistemas, tecnologia, soluções digitais">
+    
+    <!-- Open Graph tags -->
+    <meta property="og:title" content="Mattos Tech Solutions - Desenvolvimento Web Profissional">
+    <meta property="og:description" content="Desenvolvimento de websites e sistemas personalizados com tecnologias modernas. Soluções digitais para o crescimento do seu negócio.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mattostech.com.br">
   </head>
   <body>
     <div id="root"></div>

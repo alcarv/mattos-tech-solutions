@@ -22,7 +22,7 @@ const codeSnippets = [
 ];
 
 export const CodeAnimation: React.FC = () => {
-  const [visibleLines, setVisibleLines] = useState < string[] > ([]);
+  const [visibleLines, setVisibleLines] = useState<string[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -30,21 +30,22 @@ export const CodeAnimation: React.FC = () => {
       const timer = setTimeout(() => {
         setVisibleLines(prev => [...prev, codeSnippets[currentIndex]]);
         setCurrentIndex(prev => prev + 1);
-      }, 500);
+      }, 100);
 
       return () => clearTimeout(timer);
     }
   }, [currentIndex]);
 
   return (
-    <div className="bg-[#282a36] rounded-lg p-6 font-mono text-sm md:text-base overflow-hidden relative">
+    <div className="bg-[#282a36] rounded-lg p-6 font-mono text-sm md:text-base overflow-hidden relative transform-gpu">
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-[#6272a4]/10 to-[#bd93f9]/10 pointer-events-none"></div>
       {visibleLines.map((line, index) => (
         <div
           key={index}
-          className="flex items-center space-x-4 animate-fadeIn"
+          className="flex items-center space-x-4"
           style={{
-            animation: `slideIn 0.5s ease-out ${index * 0.1}s both`,
+            opacity: 0,
+            animation: `fadeIn 0.3s ease-out ${index * 0.1}s forwards`,
           }}
         >
           <span className="text-[#6272a4] select-none w-6 text-right">{index + 1}</span>
