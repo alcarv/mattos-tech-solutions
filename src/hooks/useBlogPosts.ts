@@ -30,23 +30,21 @@ interface UseBlogPostsResult {
   loading: boolean;
   error: Error | null;
   totalPosts: number;
-  hasMore: boolean;
-  loadMore: () => Promise<void>;
+  fetchPage: (page: number) => Promise<void>;
 }
 
 export function useBlogPosts({
   websiteId,
   page = 1,
-  perPage = 10,
+  perPage = 6,
   orderBy = { column: 'published_at', ascending: false }
 }: UseBlogPostsOptions): UseBlogPostsResult {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
   const [totalPosts, setTotalPosts] = useState(0);
-  const [hasMore, setHasMore] = useState(false);
 
-  const fetchPosts = async (startIndex: number) => {
+  const fetchPage = async (pageNumber: number) => {
     try {
       setLoading(true);
       setError(null);
@@ -59,18 +57,21 @@ export function useBlogPosts({
 
       setTotalPosts(count || 0);
 
-      // Fetch posts with pagination
+      // Calculate the range for the current page
+      const from = (pageNumber - 1) * perPage;
+      const to = from + perPage - 1;
+
+      // Fetch posts for the current page
       const { data, error } = await supabase
         .from('blog_posts')
         .select('*')
         .eq('website_id', websiteId)
         .order(orderBy.column, { ascending: orderBy.ascending })
-        .range(startIndex, startIndex + perPage - 1);
+        .range(from, to);
 
       if (error) throw error;
 
-      setPosts(prevPosts => startIndex === 0 ? data : [...prevPosts, ...data]);
-      setHasMore((count || 0) > startIndex + perPage);
+      setPosts(data);
     } catch (err) {
       setError(err instanceof Error ? err : new Error('Failed to fetch blog posts'));
     } finally {
@@ -79,21 +80,14 @@ export function useBlogPosts({
   };
 
   useEffect(() => {
-    fetchPosts(0);
-  }, [websiteId]);
-
-  const loadMore = async () => {
-    if (!loading && hasMore) {
-      await fetchPosts(posts.length);
-    }
-  };
+    fetchPage(page);
+  }, [websiteId, page, perPage]);
 
   return {
     posts,
     loading,
     error,
     totalPosts,
-    hasMore,
-    loadMore
+    fetchPage
   };
 }

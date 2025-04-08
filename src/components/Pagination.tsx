@@ -12,15 +12,20 @@ export const Pagination: React.FC<PaginationProps> = ({
   totalPages,
   onPageChange,
 }) => {
+  const handlePageChange = (page: number) => {
+    if (page === currentPage) return;
+    onPageChange(page);
+  };
+
   return (
     <div className="flex items-center justify-center space-x-2 mt-12">
       <button
-        onClick={() => onPageChange(currentPage - 1)}
+        onClick={() => handlePageChange(currentPage - 1)}
         disabled={currentPage === 1}
         className={`p-2 rounded-lg ${
           currentPage === 1
             ? 'text-gray-400 cursor-not-allowed'
-            : 'text-blue-600 hover:bg-blue-50'
+            : 'text-blue-600 hover:bg-blue-50 dark:hover:bg-gray-700'
         }`}
         aria-label="Previous page"
       >
@@ -32,11 +37,11 @@ export const Pagination: React.FC<PaginationProps> = ({
         return (
           <button
             key={page}
-            onClick={() => onPageChange(page)}
+            onClick={() => handlePageChange(page)}
             className={`px-4 py-2 rounded-lg ${
               currentPage === page
                 ? 'bg-blue-600 text-white'
-                : 'text-gray-700 hover:bg-blue-50'
+                : 'text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700'
             }`}
           >
             {page}
@@ -45,12 +50,12 @@ export const Pagination: React.FC<PaginationProps> = ({
       })}
       
       <button
-        onClick={() => onPageChange(currentPage + 1)}
+        onClick={() => handlePageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
         className={`p-2 rounded-lg ${
           currentPage === totalPages
             ? 'text-gray-400 cursor-not-allowed'
-            : 'text-blue-600 hover:bg-blue-50'
+            : 'text-blue-600 hover:bg-blue-50 dark:hover:bg-gray-700'
         }`}
         aria-label="Next page"
       >
