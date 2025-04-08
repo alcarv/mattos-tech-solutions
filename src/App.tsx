@@ -300,6 +300,33 @@ function App() {
                 </div>
               </section>
 
+              {/* Testimonials Section */}
+              <section id="testimonials" className="py-20 bg-gray-50 dark:bg-gray-800">
+                <div className="container mx-auto px-6">
+                  <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 dark:text-white">O que nossos clientes dizem</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <TestimonialCard
+                      name="Maria Silva"
+                      role="Proprietária de Restaurante"
+                      image="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&h=150&q=80"
+                      content="O site que criaram para o meu restaurante capta perfeitamente nossa atmosfera e aumentou significativamente nossas reservas online."
+                    />
+                    <TestimonialCard
+                      name="João Santos"
+                      role="Instrutor de Fitness"
+                      image="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=150&h=150&q=80"
+                      content="Serviço profissional do começo ao fim. Meu site de treinamento fitness ficou incrível e funciona perfeitamente em todos os dispositivos."
+                    />
+                    <TestimonialCard
+                      name="Ana Costa"
+                      role="Proprietária de Boutique"
+                      image="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&h=150&q=80"
+                      content="Eles transformaram completamente minha presença online. O site é lindo e ajudou a aumentar significativamente minhas vendas."
+                    />
+                  </div>
+                </div>
+              </section>
+
               {/* Contact Section */}
               <section id="contact" className="py-20 dark:bg-gray-900">
                 <div className="container mx-auto px-6">
@@ -434,6 +461,33 @@ function ServiceCard({ icon, title, description, price }: ServiceCardProps) {
       <h3 className="text-xl font-semibold mb-3 dark:text-white">{title}</h3>
       <p className="text-gray-600 dark:text-gray-300 mb-4">{description}</p>
       <p className="text-lg font-semibold text-green-600 dark:text-green-400">{price}</p>
+    </div>
+  );
+}
+
+interface TestimonialCardProps {
+  name: string;
+  role: string;
+  image: string;
+  content: string;
+}
+
+function TestimonialCard({ name, role, image, content }: TestimonialCardProps) {
+  return (
+    <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg">
+      <div className="flex items-center mb-6">
+        <img src={image} alt={name} className="w-12 h-12 rounded-full mr-4" />
+        <div>
+          <h3 className="font-semibold text-lg dark:text-white">{name}</h3>
+          <p className="text-gray-600 dark:text-gray-400">{role}</p>
+        </div>
+      </div>
+      <p className="text-gray-700 dark:text-gray-300">{content}</p>
+      <div className="mt-6 flex text-yellow-400">
+        {[...Array(5)].map((_, i) => (
+          <Star key={i} className="h-5 w-5 fill-current" />
+        ))}
+      </div>
     </div>
   );
 }
