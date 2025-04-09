@@ -1,5 +1,5 @@
 import React, { useState, FormEvent } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { Code2, Globe, Laptop, MessageSquare, MonitorSmartphone, Rocket, Star, Check, Sparkles, X, Menu, Phone } from 'lucide-react';
 import { WhatsAppIcon } from './components/WhatsAppIcon';
 import { BlogPostsList } from './components/BlogPostsList';
@@ -93,13 +93,17 @@ function App() {
         </button>
 
         {/* Navigation */}
-        <nav className="fixed top-0 left-0 w-full bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-md z-50">
+        <nav className="fixed top-0 left-0 w-full bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-md z-40">
           <div className="container mx-auto px-6 py-4">
             <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-2">
+              <Link 
+                to="/" 
+                className="flex items-center space-x-2 hover:text-blue-200 transition-colors duration-200"
+                onClick={() => trackEvent('logo_click', 'navigation', 'Home')}
+              >
                 <Code2 className="h-8 w-8" />
                 <span className="text-xl font-bold">Mattos Tech & Solutions</span>
-              </div>
+              </Link>
 
               {/* Desktop Navigation */}
               <div className="hidden md:flex items-center space-x-8">
@@ -280,7 +284,7 @@ function App() {
                             className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-indigo-700 hover:to-purple-700 transition duration-300 w-full flex items-center justify-center gap-2"
                           >
                             <WhatsAppIcon className="h-5 w-5" />
-                            Faça uma Cotação
+                            <span>Faça uma Cotação</span>
                           </button>
                           <p className="mt-4 text-gray-600 dark:text-gray-400 text-sm">
                             Entre em contato para uma solução personalizada que atenda às suas necessidades e ao seu orçamento
