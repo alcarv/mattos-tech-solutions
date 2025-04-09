@@ -34,7 +34,6 @@ export const BlogPostsList: React.FC<BlogPostsListProps> = ({ websiteId, perPage
     setCurrentPage(page);
     fetchPage(page);
     
-    // Smooth scroll to the top of the blog posts list
     if (listRef.current) {
       listRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
@@ -42,7 +41,10 @@ export const BlogPostsList: React.FC<BlogPostsListProps> = ({ websiteId, perPage
 
   const handlePostClick = (e: React.MouseEvent<HTMLAnchorElement>, postId: string) => {
     e.preventDefault();
-    navigate(`/blog/${postId}`);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setTimeout(() => {
+      navigate(`/blog/${postId}`);
+    }, 300);
   };
 
   const formatDate = (date: string | null) => {
