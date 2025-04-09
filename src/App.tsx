@@ -82,7 +82,7 @@ function App() {
     <Router>
       <div className="min-h-screen bg-white dark:bg-gray-900 relative">
         <Toaster position="top-right" />
-        
+
         {/* WhatsApp Button */}
         <button
           onClick={handleWhatsAppClick}
@@ -96,8 +96,8 @@ function App() {
         <nav className="fixed top-0 left-0 w-full bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-md z-40">
           <div className="container mx-auto px-6 py-4">
             <div className="flex items-center justify-between">
-              <Link 
-                to="/" 
+              <Link
+                to="/"
                 className="flex items-center space-x-2 hover:text-blue-200 transition-colors duration-200"
                 onClick={() => trackEvent('logo_click', 'navigation', 'Home')}
               >
@@ -179,7 +179,9 @@ function App() {
                     <div className="hidden md:block">
                       <CodeAnimation />
                     </div>
-                    <PromoBanner />
+                    <div className="mt-8">
+                      <PromoBanner />
+                    </div>
                   </div>
                 </div>
               </header>
