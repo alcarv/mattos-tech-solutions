@@ -1,0 +1,25 @@
+{
+  "name": "Mattos Tech Solutions",
+  "short_name": "Mattos Tech",
+  "description": "Desenvolvimento profissional de websites e sistemas personalizados",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1a1b26",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "orientation": "any",
+  "categories": [
+    "business",
+    "technology",
+    "web development"
+  ]
+}

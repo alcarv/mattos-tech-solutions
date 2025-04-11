@@ -4,30 +4,72 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Desenvolvimento Websites | Desenvolvimento Sistemas | Mattos Tech Solutions</title>
+    <title>Desenvolvimento de Websites e Sistemas | Mattos Tech Solutions - Soluções Digitais Personalizadas</title>
     
-    <!-- Preconnect para otimizar fontes -->
+    <!-- Meta tags aprimoradas para SEO -->
+    <meta name="description" content="Desenvolvimento profissional de websites e sistemas personalizados. Especialistas em soluções digitais, design responsivo e otimização de performance. Transforme sua presença online hoje!" />
+    <meta name="keywords" content="desenvolvimento web, websites, sistemas, tecnologia, soluções digitais, design responsivo, SEO, performance web, aplicações web" />
+    <meta name="author" content="Mattos Tech Solutions" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="language" content="pt-BR" />
+    <meta name="geo.region" content="BR" />
+    <meta name="geo.placename" content="Brasil" />
+
+    <!-- Open Graph tags aprimoradas -->
+    <meta property="og:title" content="Mattos Tech Solutions - Desenvolvimento Web Profissional" />
+    <meta property="og:description" content="Desenvolvimento de websites e sistemas personalizados com tecnologias modernas. Soluções digitais para o crescimento do seu negócio." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mattostechsolutions.com" />
+    <meta property="og:site_name" content="Mattos Tech Solutions" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter Card tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Mattos Tech Solutions - Desenvolvimento Web Profissional" />
+    <meta name="twitter:description" content="Desenvolvimento de websites e sistemas personalizados. Soluções digitais para seu negócio." />
+
+    <!-- Preconnect e DNS prefetch -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
 
-    <!-- Fonte com display=swap para evitar FOIT -->
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" /> -->
-
-    <!-- Preload de imagem (caso tenha uma acima da dobra) -->
+    <!-- Preload de recursos críticos -->
     <link rel="preload" as="image" href="/favicon.svg">
+    
+    <!-- Schema.org markup para Rich Snippets -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Mattos Tech Solutions",
+        "description": "Desenvolvimento profissional de websites e sistemas personalizados",
+        "url": "https://mattostechsolutions.com",
+        "logo": "https://mattostechsolutions.com/favicon.svg",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+5511982712741",
+          "contactType": "customer service",
+          "availableLanguage": "Portuguese"
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "BR"
+        },
+        "sameAs": [
+          "https://wa.me/+5511982712741"
+        ]
+      }
+    </script>
 
-    <!-- Meta tags para SEO -->
-    <meta name="description" content="Desenvolvimento de websites e sistemas personalizados com tecnologias modernas. Soluções digitais para o crescimento do seu negócio.">
-    <meta name="keywords" content="desenvolvimento web, websites, sistemas, tecnologia, soluções digitais">
-
-    <!-- Open Graph tags -->
-    <meta property="og:title" content="Mattos Tech Solutions - Desenvolvimento Web Profissional">
-    <meta property="og:description" content="Desenvolvimento de websites e sistemas personalizados com tecnologias modernas. Soluções digitais para o crescimento do seu negócio.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://mattostech.com.br">
+    <!-- Manifest for PWA -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#1a1b26">
+    <link rel="apple-touch-icon" href="/icon-192x192.png">
   </head>
   <body>
-    <!-- Div onde o React monta -->
     <div id="root"></div>
 
     <!-- Google Analytics carregado de forma não bloqueante -->
@@ -42,12 +84,14 @@
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', 'G-7DNE8CSDP0');
+          gtag('config', 'G-7DNE8CSDP0', {
+            'page_path': window.location.pathname,
+            'site_speed_sample_rate': 100
+          });
         };
       });
     </script>
 
-    <!-- Script principal da aplicação (gerado pelo Vite) -->
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

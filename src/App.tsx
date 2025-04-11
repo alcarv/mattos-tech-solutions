@@ -1,5 +1,5 @@
 import React, { useState, FormEvent } from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import { Code2, Globe, MonitorSmartphone, Rocket, Star, Check, Sparkles, X, Menu, Phone } from 'lucide-react';
 import { WhatsAppIcon } from './components/WhatsAppIcon';
 import { BlogPostsList } from './components/BlogPostsList';
@@ -8,10 +8,13 @@ import { CodeAnimation } from './components/CodeAnimation';
 import { ThemeToggle } from './components/ThemeToggle';
 import PromoBanner from './components/PromoBanner';
 import { useGoogleAnalytics } from './hooks/useGoogleAnalytics';
+import { Helmet } from 'react-helmet-async';
 import emailjs from '@emailjs/browser';
 import toast, { Toaster } from 'react-hot-toast';
 
 function App() {
+  const location = useLocation();
+  const canonicalUrl = `https://mattostechsolutions.com${location.pathname}`;
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -78,6 +81,31 @@ function App() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 relative">
+      <Helmet>
+        <link rel="canonical" href={canonicalUrl} />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="theme-color" content="#1a1b26" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <link rel="alternate" href="https://mattostechsolutions.com" hrefLang="pt-BR" />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "url": "https://mattostechsolutions.com",
+            "name": "Mattos Tech Solutions",
+            "description": "Desenvolvimento profissional de websites e sistemas personalizados",
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": "https://mattostechsolutions.com/search?q={search_term_string}",
+              "query-input": "required name=search_term_string"
+            }
+          })}
+        </script>
+      </Helmet>
+
       <Toaster position="top-right" />
 
       {/* WhatsApp Button */}

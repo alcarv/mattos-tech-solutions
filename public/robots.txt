@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /private/
+
+# Allow search engines to crawl JavaScript and CSS files
+Allow: /*.js$
+Allow: /*.css$
+
+# Crawl-delay for all bots
+Crawl-delay: 10
+
+Sitemap: https://mattostechsolutions.com/sitemap.xml
