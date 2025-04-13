@@ -4,14 +4,16 @@ declare global {
   interface Window {
     gtag?: (
       command: string,
-      action: string,
+      eventName: string,
       params: {
         event_category?: string;
         event_label?: string;
         value?: number;
+        send_to?: string;
         [key: string]: any;
       }
     ) => void;
+    dataLayer?: any[];
   }
 }
 
@@ -26,7 +28,8 @@ export const useGoogleAnalytics = () => {
       window.gtag('event', eventName, {
         event_category: category,
         event_label: label,
-        value: value
+        value: value,
+        send_to: 'G-7DNE8CSDP0'
       });
     }
   }, []);

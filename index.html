@@ -68,30 +68,22 @@
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#1a1b26">
     <link rel="apple-touch-icon" href="/icon-192x192.png">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7DNE8CSDP0"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-7DNE8CSDP0', {
+        page_path: window.location.pathname,
+        site_speed_sample_rate: 100,
+        send_page_view: true
+      });
+    </script>
   </head>
   <body>
     <div id="root"></div>
-
-    <!-- Google Analytics carregado de forma não bloqueante -->
-    <script>
-      window.addEventListener('DOMContentLoaded', () => {
-        const script = document.createElement('script');
-        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-7DNE8CSDP0';
-        script.async = true;
-        document.head.appendChild(script);
-
-        script.onload = () => {
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-7DNE8CSDP0', {
-            'page_path': window.location.pathname,
-            'site_speed_sample_rate': 100
-          });
-        };
-      });
-    </script>
-
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
