@@ -27,7 +27,8 @@ function App() {
 
   const handleWhatsAppClick = () => {
     trackEvent('whatsapp_click', 'contact', 'WhatsApp Button');
-    window.open('https://wa.me/+5511982712741', '_blank');
+    const message = encodeURIComponent("Olá! Tenho interesse em criar um site ou sistema personalizado com a Mattos Tech  Solutions.");
+    window.open(`https://wa.me/5511982712741?text=${message}`, '_blank');
   };
 
   const handleCallClick = () => {
