@@ -29,7 +29,7 @@ export const useGoogleAnalytics = () => {
         event_category: category,
         event_label: label,
         value: value,
-        send_to: 'G-7DNE8CSDP0'
+        send_to: 'G-XXXXX'
       });
     }
   }, []);

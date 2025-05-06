@@ -31,6 +31,27 @@
   }
 }
 
+/* Add scroll reveal animation */
+.animate-reveal {
+  animation: reveal 0.6s ease-out forwards;
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Initially hide elements that will be revealed */
+[data-scroll] {
+  opacity: 0;
+}
+
 /* Add performance optimizations */
 @layer utilities {
   .transform-gpu {

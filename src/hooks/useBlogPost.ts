@@ -19,13 +19,35 @@ export function useBlogPost(id: string): UseBlogPostResult {
         setLoading(true);
         setError(null);
 
-        const { data, error } = await supabase
+        const { data, error: fetchError } = await supabase
           .from('blog_posts')
-          .select('*')
+          .select(`
+            id,
+            title,
+            description,
+            content,
+            created_at,
+            updated_at,
+            published,
+            published_at,
+            image_url,
+            website_id,
+            user_id
+          `)
           .eq('id', id)
           .single();
 
-        if (error) throw error;
+        if (fetchError) throw fetchError;
+        
+        // Update page title and meta description for SEO
+        if (data) {
+          document.title = `${data.title} | Mattos Tech Solutions Blog`;
+          const metaDescription = document.querySelector('meta[name="description"]');
+          if (metaDescription) {
+            metaDescription.setAttribute('content', data.description || '');
+          }
+        }
+
         setPost(data);
       } catch (err) {
         setError(err instanceof Error ? err : new Error('Failed to fetch blog post'));

@@ -11,6 +11,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://mattostechsolutions.com/blog/54eea3bb-3e5f-410b-9777-bd31171e1e83</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://mattostechsolutions.com/blog/648243de-3a16-4842-857f-27cd9aa3d405</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -22,6 +27,11 @@
   </url>
   <url>
     <loc>https://mattostechsolutions.com/blog/2ef6de6f-6b8a-428b-8bb9-7e25fff02cd3</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mattostechsolutions.com/blog/4e6fcd98-c1d7-476c-b7fd-df24f5272eac</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
