@@ -52,12 +52,12 @@ function App() {
   const handleWhatsAppClick = () => {
     trackEvent('whatsapp_click', 'contact', 'WhatsApp Button');
     const message = encodeURIComponent("Olá! Tenho interesse em serviços de consultoria de TI com a Mattos Tech Solutions.");
-    window.open(`https://wa.me/5511982712741?text=${message}`, '_blank');
+    window.open(`https://wa.me/5511990183194?text=${message}`, '_blank');
   };
 
   const handleCallClick = () => {
     trackEvent('phone_click', 'contact', 'Phone Button');
-    window.location.href = 'tel:+5511982712741';
+    window.location.href = 'tel:+5511990183194';
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -132,14 +132,6 @@ function App() {
       </Helmet>
 
       <Toaster position="top-right" />
-
-      <button
-        onClick={handleWhatsAppClick}
-        className="fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:bg-[#128C7E] transition-all z-50 flex items-center justify-center"
-        aria-label="Contact on WhatsApp"
-      >
-        <WhatsAppIcon />
-      </button>
 
       <nav className="fixed top-0 left-0 w-full bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-md z-40">
         <div className="container mx-auto px-6 py-4">
