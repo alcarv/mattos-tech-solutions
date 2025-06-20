@@ -25,6 +25,7 @@ import {
   UserCircle2
 } from 'lucide-react';
 import { WhatsAppIcon } from './components/WhatsAppIcon';
+import { InstagramIcon } from './components/InstagramIcon';
 import { BlogPostsList } from './components/BlogPostsList';
 import { BlogPostPage } from './pages/BlogPostPage';
 import { CodeAnimation } from './components/CodeAnimation';
@@ -53,6 +54,11 @@ function App() {
     trackEvent('whatsapp_click', 'contact', 'WhatsApp Button');
     const message = encodeURIComponent("Olá! Tenho interesse em serviços de consultoria de TI com a Mattos Tech Solutions.");
     window.open(`https://wa.me/5511990183194?text=${message}`, '_blank');
+  };
+
+  const handleInstagramClick = () => {
+    trackEvent('instagram_click', 'social', 'Instagram Button');
+    window.open('https://instagram.com/mattostechsolutions', '_blank');
   };
 
   const handleCallClick = () => {
@@ -210,6 +216,16 @@ function App() {
                         >
                           <WhatsAppIcon className="h-5 w-5" />
                           <span>Faça uma Cotação</span>
+                        </button>
+                      </div>
+                      <div className="mt-6 flex items-center gap-4">
+                        <span className="text-blue-100">Siga-nos:</span>
+                        <button
+                          onClick={handleInstagramClick}
+                          className="text-blue-100 hover:text-white transition-colors"
+                          aria-label="Follow us on Instagram"
+                        >
+                          <InstagramIcon className="h-6 w-6" />
                         </button>
                       </div>
                     </div>
@@ -511,6 +527,13 @@ function App() {
                           <Phone className="h-5 w-5" />
                           <span>Ligação</span>
                         </button>
+                        <button
+                          onClick={handleInstagramClick}
+                          className="flex items-center gap-2 text-pink-600 hover:text-pink-700 transition-colors"
+                        >
+                          <InstagramIcon className="h-5 w-5" />
+                          <span>Instagram</span>
+                        </button>
                       </div>
                     </div>
                     <form onSubmit={handleSubmit} className="space-y-6">
@@ -599,6 +622,9 @@ function App() {
                   </button>
                   <button onClick={handleCallClick} className="hover:text-blue-400">
                     <Phone className="h-5 w-5" />
+                  </button>
+                  <button onClick={handleInstagramClick} className="hover:text-pink-400">
+                    <InstagramIcon className="h-5 w-5" />
                   </button>
                 </div>
               </div>
