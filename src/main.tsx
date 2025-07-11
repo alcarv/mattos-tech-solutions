@@ -1,6 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import App from './App.tsx';
 import { ThemeProvider } from './context/ThemeContext';
@@ -11,7 +12,19 @@ createRoot(document.getElementById('root')!).render(
     <HelmetProvider>
       <BrowserRouter>
         <ThemeProvider>
-          <App />
+          <Routes>
+            {/* Marketing campaign routes */}
+            <Route path="/desenvolvedor-sites" element={<App />} />
+            <Route path="/consultoria-tecnologia" element={<App />} />
+            <Route path="/sistemas-personalizados" element={<App />} />
+            <Route path="/migracao-cloud" element={<App />} />
+            <Route path="/apps-mobile" element={<App />} />
+            <Route path="/solucoes-ecommerce" element={<App />} />
+            {/* Blog routes */}
+            <Route path="/blog/:id" element={<App />} />
+            {/* Home route */}
+            <Route path="/*" element={<App />} />
+          </Routes>
         </ThemeProvider>
       </BrowserRouter>
     </HelmetProvider>

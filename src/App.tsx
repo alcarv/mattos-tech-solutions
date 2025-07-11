@@ -3,11 +3,8 @@ import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import {
   Code2,
   Globe,
-  MonitorSmartphone,
   Rocket,
-  Star,
   Check,
-  Sparkles,
   X,
   Menu,
   Phone,
@@ -36,9 +33,46 @@ import emailjs from '@emailjs/browser';
 import toast, { Toaster } from 'react-hot-toast';
 import ScrollReveal from './components/ScrollReveal';
 
+// Campaign configurations for marketing paths
+const campaignConfigs = {
+  'desenvolvedor-sites': {
+    heroTitle: 'Contrate Desenvolvedor de Sites Profissionais',
+    heroSubtitle: 'Criamos sites modernos, responsivos e otimizados que convertem visitantes em clientes. Sua presença digital profissional começa aqui.',
+    ctaText: 'Criar Meu Site'
+  },
+  'consultoria-tecnologia': {
+    heroTitle: 'Contrate uma Consultoria Tecnológica Especializada',
+    heroSubtitle: 'Transforme sua operação com estratégias tecnológicas que reduzem custos, otimizam processos e aceleram o crescimento do seu negócio.',
+    ctaText: 'Solicitar Consultoria'
+  },
+  'sistemas-personalizados': {
+    heroTitle: 'Sistemas Personalizados para Sua Empresa',
+    heroSubtitle: 'Automatize processos, aumente a eficiência e reduza custos operacionais com sistemas desenvolvidos especificamente para seu negócio.',
+    ctaText: 'Desenvolver Sistema'
+  },
+  'migração-cloud': {
+    heroTitle: 'Migração Segura para Nuvem',
+    heroSubtitle: 'Reduza custos de infraestrutura em até 40% e aumente a performance com nossa migração especializada para nuvem.',
+    ctaText: 'Migrar para Nuvem'
+  },
+  'apps-mobile': {
+    heroTitle: 'Aplicativos Mobile de Alta Performance',
+    heroSubtitle: 'Alcance seus clientes onde eles estão com aplicativos móveis modernos, intuitivos e otimizados para iOS e Android.',
+    ctaText: 'Criar Aplicativo'
+  },
+  'soluções-ecommerce': {
+    heroTitle: 'E-commerce que Vende Mais',
+    heroSubtitle: 'Aumente suas vendas online com lojas virtuais otimizadas para conversão, integradas com os melhores sistemas de pagamento.',
+    ctaText: 'Criar Loja Virtual'
+  }
+};
+
 // Rest of the App.tsx file remains exactly the same
 function App() {
   const location = useLocation();
+  const campaign = location.pathname.startsWith('/') ? location.pathname.slice(1) : null;
+  const campaignConfig = campaign && campaignConfigs[campaign as keyof typeof campaignConfigs];
+  
   const canonicalUrl = `https://mattostechsolutions.com${location.pathname}`;
   const [formData, setFormData] = useState({
     name: '',
@@ -52,8 +86,11 @@ function App() {
 
   const handleWhatsAppClick = () => {
     trackEvent('whatsapp_click', 'contact', 'WhatsApp Button');
+    if (campaignConfig) {
+      trackEvent('whatsapp_campaign_click', 'campaign', campaign);
+    }
     const message = encodeURIComponent("Olá! Tenho interesse em serviços de consultoria de TI com a Mattos Tech Solutions.");
-    window.open(`https://wa.me/5511990183194?text=${message}`, '_blank');
+    window.open(`https://wa.me/5511982712741?text=${message}`, '_blank');
   };
 
   const handleInstagramClick = () => {
@@ -63,7 +100,7 @@ function App() {
 
   const handleCallClick = () => {
     trackEvent('phone_click', 'contact', 'Phone Button');
-    window.location.href = 'tel:+5511990183194';
+    window.location.href = 'tel:+5511982712741';
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -139,6 +176,14 @@ function App() {
 
       <Toaster position="top-right" />
 
+      <button
+        onClick={handleWhatsAppClick}
+        className="fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:bg-[#128C7E] transition-all z-50 flex items-center justify-center"
+        aria-label="Contact on WhatsApp"
+      >
+        <WhatsAppIcon />
+      </button>
+
       <nav className="fixed top-0 left-0 w-full bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-md z-40">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
@@ -197,18 +242,23 @@ function App() {
                   <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
                     <div className="max-w-2xl">
                       <h1 className="text-3xl md:text-5xl font-bold mb-4 leading-tight">
-                        Impulsione seu negócio com consultoria tecnológica de verdade
+                        {campaignConfig ? campaignConfig.heroTitle : 'Impulsione seu negócio com consultoria tecnológica de verdade'}
                       </h1>
                       <p className="text-lg md:text-xl mb-6 text-blue-100 leading-relaxed">
-                        Soluções sob medida em tecnologia, especialidade em infraestrutura local e cloud, desenvolvimento de sistemas, sites e suporte contínuo para transformar sua operação digital
+                        {campaignConfig ? campaignConfig.heroSubtitle : 'Soluções sob medida em tecnologia, especialidade em infraestrutura local e cloud, desenvolvimento de sistemas, sites e suporte contínuo para transformar sua operação digital'}
                       </p>
                       <div className="flex flex-col sm:flex-row gap-4">
                         <a
                           href="#contact"
-                          onClick={() => trackEvent('cta_click', 'conversion', 'Start Now')}
+                          onClick={() => {
+                            trackEvent('cta_click', 'conversion', campaignConfig ? campaign : 'Start Now');
+                            if (campaignConfig) {
+                              trackEvent('campaign_cta_click', 'campaign', campaign);
+                            }
+                          }}
                           className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition duration-300 text-center text-base"
                         >
-                          Comece Agora
+                          {campaignConfig ? campaignConfig.ctaText : 'Comece Agora'}
                         </a>
                         <button
                           onClick={handleWhatsAppClick}
