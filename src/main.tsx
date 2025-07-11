@@ -14,9 +14,9 @@ createRoot(document.getElementById('root')!).render(
         <ThemeProvider>
           <Routes>
             {/* Marketing campaign routes */}
-            <Route path="/desenvolvedor-sites" element={<App />} />
-            <Route path="/consultoria-tecnologia" element={<App />} />
-            <Route path="/sistemas-personalizados" element={<App />} />
+            <Route path="/criacao-sites" element={<App />} />
+            <Route path="/criacao-software" element={<App />} />
+            <Route path="/consultoria-ti" element={<App />} />
             <Route path="/migracao-cloud" element={<App />} />
             <Route path="/apps-mobile" element={<App />} />
             <Route path="/solucoes-ecommerce" element={<App />} />

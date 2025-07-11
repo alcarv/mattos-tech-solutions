@@ -35,20 +35,20 @@ import ScrollReveal from './components/ScrollReveal';
 
 // Campaign configurations for marketing paths
 const campaignConfigs = {
-  'desenvolvedor-sites': {
-    heroTitle: 'Contrate Desenvolvedor de Sites Profissionais',
-    heroSubtitle: 'Criamos sites modernos, responsivos e otimizados que convertem visitantes em clientes. Sua presença digital profissional começa aqui.',
+  'criacao-sites': {
+    heroTitle: 'Transforme sua empresa com um site profissional que destaca sua marca e atrai mais clientes.',
+    heroSubtitle: 'Criamos sites personalizados que refletem a identidade da sua empresa e garantem uma excelente experiência para o usuário. Com design responsivo e foco na conversão, oferecemos soluções completas de criação de sites, do planejamento ao suporte contínuo, para fortalecer sua presença online.',
     ctaText: 'Criar Meu Site'
   },
-  'consultoria-tecnologia': {
-    heroTitle: 'Contrate uma Consultoria Tecnológica Especializada',
-    heroSubtitle: 'Transforme sua operação com estratégias tecnológicas que reduzem custos, otimizam processos e aceleram o crescimento do seu negócio.',
-    ctaText: 'Solicitar Consultoria'
+  'criacao-software': {
+    heroTitle: 'Transforme Seu Negócio com Software Personalizado',
+    heroSubtitle: 'Criamos sistemas personalizados que resolvem desafios específicos do seu negócio, melhorando a eficiência e proporcionando resultados reais.',
+    ctaText: 'Criar meu Software'
   },
-  'sistemas-personalizados': {
-    heroTitle: 'Sistemas Personalizados para Sua Empresa',
-    heroSubtitle: 'Automatize processos, aumente a eficiência e reduza custos operacionais com sistemas desenvolvidos especificamente para seu negócio.',
-    ctaText: 'Desenvolver Sistema'
+  'consultoria-ti': {
+    heroTitle: 'Consultoria em TI para Modernizar Sua Infraestrutura e Melhorar a Eficiência Operacional',
+    heroSubtitle: 'Analisamos suas necessidades tecnológicas e implementamos soluções personalizadas para otimizar sua infraestrutura, reduzir custos e aumentar a produtividade da sua equipe.',
+    ctaText: 'Solicitar Consultoria'
   },
   'migracao-cloud': {
     heroTitle: 'Migração Segura para Nuvem',
