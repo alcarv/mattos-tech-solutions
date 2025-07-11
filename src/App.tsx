@@ -50,7 +50,7 @@ const campaignConfigs = {
     heroSubtitle: 'Automatize processos, aumente a eficiência e reduza custos operacionais com sistemas desenvolvidos especificamente para seu negócio.',
     ctaText: 'Desenvolver Sistema'
   },
-  'migração-cloud': {
+  'migracao-cloud': {
     heroTitle: 'Migração Segura para Nuvem',
     heroSubtitle: 'Reduza custos de infraestrutura em até 40% e aumente a performance com nossa migração especializada para nuvem.',
     ctaText: 'Migrar para Nuvem'
@@ -60,7 +60,7 @@ const campaignConfigs = {
     heroSubtitle: 'Alcance seus clientes onde eles estão com aplicativos móveis modernos, intuitivos e otimizados para iOS e Android.',
     ctaText: 'Criar Aplicativo'
   },
-  'soluções-ecommerce': {
+  'solucoes-ecommerce': {
     heroTitle: 'E-commerce que Vende Mais',
     heroSubtitle: 'Aumente suas vendas online com lojas virtuais otimizadas para conversão, integradas com os melhores sistemas de pagamento.',
     ctaText: 'Criar Loja Virtual'
