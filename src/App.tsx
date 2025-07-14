@@ -90,7 +90,7 @@ function App() {
       trackEvent('whatsapp_campaign_click', 'campaign', campaign);
     }
     const message = encodeURIComponent("Olá! Tenho interesse em serviços de consultoria de TI com a Mattos Tech Solutions.");
-    window.open(`https://wa.me/5511982712741?text=${message}`, '_blank');
+    window.open(`https://wa.me/5511990183194?text=${message}`, '_blank');
   };
 
   const handleInstagramClick = () => {
@@ -100,7 +100,7 @@ function App() {
 
   const handleCallClick = () => {
     trackEvent('phone_click', 'contact', 'Phone Button');
-    window.location.href = 'tel:+5511982712741';
+    window.location.href = 'tel:+5511990183194';
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
